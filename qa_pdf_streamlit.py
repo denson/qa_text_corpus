@@ -50,7 +50,7 @@ def qa(file, query, chain_type, k):
     db = Chroma.from_documents(texts, embeddings)
     retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": k})
     qa = RetrievalQA.from_chain_type(
-        llm=OpenAI(), chain_type=chain_type, retriever=retriever, return_source_documents=True)
+        llm=OpenAI(model_name='gpt-4'), chain_type=chain_type, retriever=retriever, return_source_documents=True)
     result = qa({"query": query})
     return result
 
